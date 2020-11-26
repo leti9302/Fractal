@@ -19,6 +19,7 @@ int main(int argc, char** argv) {
         img2.flop();
         img2.write("lena512_2.bmp");
 
+
         //положение, координату, коэффициент
         //stringstream ss;
         //string str;
