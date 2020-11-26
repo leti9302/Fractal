@@ -17,8 +17,7 @@ int main(int argc, char** argv) {
             img2.rotate(90);
         }
         img2.flop();
-        img2.write("lena512_2.bmp");
-
+        img2.write("lena512_2.bmp");s
 
         //положение, координату, коэффициент
         //stringstream ss;
