@@ -10,6 +10,10 @@
 *.userosscache
 *.sln.docstates
 
+#file.jpg
+#file2.jpg
+#lena2.bmp
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
