@@ -52,7 +52,7 @@ void Decoding(fstream& in)
 	Image block;
 	BrightnessShiftRGB temp_brightness_shift;
 	int i = 0;
-	while (i<8)
+	while (i<20)
 	{
 		for (j_table = 0; j_table < height / 4; j_table++)
 		{
@@ -70,8 +70,7 @@ void Decoding(fstream& in)
 				temp_img.draw(DrawableCompositeImage(i_table * 4, j_table * 4, block));
 			}
 		}
-		//if (img_iter.compare(temp_img, Magick::RootMeanSquaredErrorMetric)<0.00001)
-		//	break;
+		if (img_iter.compare(temp_img, Magick::RootMeanSquaredErrorMetric)<0.001) break;
 		img_iter = temp_img;
 		i++;
 	}
