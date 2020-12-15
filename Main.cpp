@@ -29,16 +29,17 @@ void main(int argc, char** argv) {
 			table_best_match[i] = new AffineTransform[width / 4];
 
 		domain_full = image;
-		domain_full.resize(forResize(width / 2, height / 2)); // сжатие доменного изображения в 2 раза
+		//domain_full.resize(forResize(width / 8, height / 8)); // сжатие доменного изображения в 2 раза
 
-		for (y = 0; y < height / 2 - 3; y++) // создание списка всевозможных доменных блоков
+		for (y = 0; y < height - 7; y++) // создание списка всевозможных доменных блоков
 		{
-			for (x = 0; x < width / 2 - 3; x++)
+			for (x = 0; x < width - 7; x++)
 			{
 				DomainImageList* newElem = new DomainImageList;
 				newElem->next = nullptr;
 				domain = domain_full;
-				domain.crop(forCrop(x, y, 4)); // обрезание
+				domain.crop(forCrop(x, y, 8)); // обрезание
+				domain.resize("4x4!");
 				newElem->domain = domain;
 				newElem->position.x = x;
 				newElem->position.y = y;

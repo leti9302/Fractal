@@ -52,7 +52,7 @@ void Decoding(fstream& in)
 	Image block;
 	BrightnessShiftRGB temp_brightness_shift;
 	int i = 0;
-	while (i<5)
+	while (i<8)
 	{
 		for (j_table = 0; j_table < height / 4; j_table++)
 		{
