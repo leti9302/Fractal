@@ -33,6 +33,7 @@ struct DomainImageList
 	Coordinates position;
 	DomainImageList* next;
 };
+
 void applyColorTransformation(Image*, BrightnessShiftRGB);
 void DILappend(DomainImageList**, DomainImageList*);
 void bestStatus(Image, DomainImageList**, AffineTransform*);

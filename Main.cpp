@@ -7,7 +7,7 @@ void main(int argc, char** argv) {
 		fstream compress_result;
 		compress_result.open("Compress Image.txt", fstream::out);
 		Image image("lena512.bmp");
-		//image.resize("64x64!"); // в тестовых целях
+		image.resize("64x64!"); // в тестовых целях
 		Image domain_full, domain, range;
 		DomainImageList* all_domain_blocks = new DomainImageList;
 		all_domain_blocks = nullptr;
