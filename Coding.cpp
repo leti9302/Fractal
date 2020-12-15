@@ -94,7 +94,7 @@ string forResize(int width, int height)
 {
 	string str;
 	stringstream ss;
-	ss << width * 4 << "x" << height * 4 << "!";
+	ss << width << "x" << height << "!";
 	ss >> str;
 	return str;
 }

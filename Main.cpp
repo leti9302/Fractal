@@ -7,7 +7,7 @@ void main(int argc, char** argv) {
 		fstream compress_result;
 		compress_result.open("Compress Image.txt", fstream::out);
 		Image image("lena512.bmp");
-		image.resize("64x64!");
+		//image.resize("64x64!"); // в тестовых целях
 		Image domain_full, domain, range;
 		DomainImageList* all_domain_blocks = new DomainImageList;
 		all_domain_blocks = nullptr;
@@ -19,9 +19,9 @@ void main(int argc, char** argv) {
 
 		if ((width % 4 != 0) || (height % 4 != 0)) // проверка размеров изображения
 		{
-			image.resize(forResize(width / 4, height / 4));
 			width = width / 4 * 4;
 			height = height / 4 * 4;
+			image.resize(forResize(width, height));
 		}
 
 		table_best_match = new AffineTransform * [height / 4];
@@ -29,7 +29,6 @@ void main(int argc, char** argv) {
 			table_best_match[i] = new AffineTransform[width / 4];
 
 		domain_full = image;
-		//domain_full.resize(forResize(width / 8, height / 8)); // сжатие доменного изображения в 2 раза
 
 		for (y = 0; y < height - 7; y++) // создание списка всевозможных доменных блоков
 		{
