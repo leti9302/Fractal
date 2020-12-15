@@ -1,12 +1,13 @@
 #include"Coding.h"
+#include"Decoding.h"
 
 void main(int argc, char** argv) {
 	try {
 		InitializeMagick(*argv);
-		ofstream compress_result;
-		compress_result.open("Compress Image.txt");
+		fstream compress_result;
+		compress_result.open("Compress Image.txt", fstream::out);
 		Image image("lena512.bmp");
-		image.resize("16x16!");
+		image.resize("64x64!");
 		Image domain_full, domain, range;
 		DomainImageList* all_domain_blocks = new DomainImageList;
 		all_domain_blocks = nullptr;
@@ -62,6 +63,9 @@ void main(int argc, char** argv) {
 		}
 
 		file_result(compress_result, table_best_match, width, height);
+		compress_result.close();
+		compress_result.open("Compress Image.txt", fstream::in);
+		Decoding(compress_result);
 		compress_result.close();
 	}
 	catch (Magick::Exception& error) {

@@ -108,7 +108,7 @@ string forCrop(int width, int height, int k)
 	return str;
 }
 
-void file_result(ofstream& out, AffineTransform** table_best_match, int width, int height)
+void file_result(fstream& out, AffineTransform** table_best_match, int width, int height)
 {
 	int i, j;
 	out << width << ' ' << height << '\n';

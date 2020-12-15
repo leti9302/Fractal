@@ -39,4 +39,4 @@ void bestStatus(Image, DomainImageList**, AffineTransform*);
 void brightnessShift(Image, Image, BrightnessShiftRGB*);
 string forResize(int, int);
 string forCrop(int, int, int);
-void file_result(ofstream&, AffineTransform**, int, int);
+void file_result(fstream&, AffineTransform**, int, int);
