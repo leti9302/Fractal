@@ -5,8 +5,8 @@ Image randomImg(int width, int height) {
 	stringstream ss;
 	ss << width << "x" << height;
 	ss >> size;
-	Geometry size_GANGSTA(size);
-	Image image(size_GANGSTA, "white");
+	Geometry size_geom(size);
+	Image image(size_geom, "white");
 	double rand_color;
 	srand(time(NULL));
 	for (int i = 0; i < width; i++) {
@@ -46,8 +46,8 @@ void Decoding(fstream& in)
 	stringstream ss;
 	ss << width << "x" << height;
 	ss >> size;
-	Geometry size_GANGSTA(size);
-	Image temp_img(size_GANGSTA, "black");
+	Geometry size_geom(size);
+	Image temp_img(size_geom, "black");
 	Image img_iter = randomImg(width, height);
 	Image block;
 	BrightnessShiftRGB temp_brightness_shift;
