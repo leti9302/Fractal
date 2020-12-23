@@ -41,3 +41,4 @@ void brightnessShift(Image, Image, BrightnessShiftRGB*);
 string forResize(int, int);
 string forCrop(int, int, int);
 void file_result(fstream&, AffineTransform**, int, int);
+void Coding(Image, fstream&);

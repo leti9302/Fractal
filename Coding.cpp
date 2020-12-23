@@ -122,3 +122,62 @@ void file_result(fstream& out, AffineTransform** table_best_match, int width, in
 		}
 	}
 }
+
+void Coding(Image image, fstream& compress_result)
+{
+	Image domain_full, domain, range;
+	DomainImageList* all_domain_blocks = new DomainImageList;
+	all_domain_blocks = nullptr;
+	AffineTransform** table_best_match;
+	AffineTransform* cur_affine_transform = new AffineTransform;
+	int width, height, i_table, j_table, x, y, i, j;
+	width = image.columns();
+	height = image.rows();
+
+	if ((width % 4 != 0) || (height % 4 != 0)) // проверка размеров изображения
+	{
+		width = width / 4 * 4;
+		height = height / 4 * 4;
+		image.resize(forResize(width, height));
+	}
+
+	table_best_match = new AffineTransform * [height / 4];
+	for (int i = 0; i < height / 4; i++)
+		table_best_match[i] = new AffineTransform[width / 4];
+
+	domain_full = image;
+
+	for (y = 0; y < height - 7; y++) // создание списка всевозможных доменных блоков
+	{
+		for (x = 0; x < width - 7; x++)
+		{
+			DomainImageList* newElem = new DomainImageList;
+			newElem->next = nullptr;
+			domain = domain_full;
+			domain.crop(forCrop(x, y, 8)); // обрезание
+			domain.resize("4x4!");
+			newElem->domain = domain;
+			newElem->position.x = x;
+			newElem->position.y = y;
+			if (all_domain_blocks == nullptr) all_domain_blocks = newElem;
+			else DILappend(&all_domain_blocks, newElem);
+		}
+	}
+
+	for (j_table = 0; j_table < height / 4; j_table++)
+	{
+		for (i_table = 0; i_table < width / 4; i_table++) //проход по ранговым (ячейкам таблицы)
+		{
+			range = image;
+			range.crop(forCrop(i_table * 4, j_table * 4, 4));
+
+			cur_affine_transform->status = 0;
+
+			bestStatus(range, &all_domain_blocks, cur_affine_transform); //отсюда выходит лучшее положение текущего доменного блока с позицией
+
+			table_best_match[j_table][i_table] = *cur_affine_transform;
+		}
+	}
+
+	file_result(compress_result, table_best_match, width, height);
+}
