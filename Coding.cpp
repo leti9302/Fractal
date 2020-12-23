@@ -123,7 +123,7 @@ void file_result(fstream& out, AffineTransform** table_best_match, int width, in
 	}
 }
 
-void Coding(Image image, fstream& compress_result)
+void Coding(Image image, fstream& compress_result) // new coding
 {
 	Image domain_full, domain, range;
 	DomainImageList* all_domain_blocks = new DomainImageList;
