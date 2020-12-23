@@ -5,8 +5,8 @@ Image randomImg(int width, int height) {
 	stringstream ss;
 	ss << width << "x" << height;
 	ss >> size;
-	Geometry size_GANGSTA(size);
-	Image image(size_GANGSTA, "white");
+	Geometry size_geom(size);
+	Image image(size_geom, "white");
 	double rand_color;
 	srand(time(NULL));
 	for (int i = 0; i < width; i++) {
@@ -46,13 +46,13 @@ void Decoding(fstream& in)
 	stringstream ss;
 	ss << width << "x" << height;
 	ss >> size;
-	Geometry size_GANGSTA(size);
-	Image temp_img(size_GANGSTA, "black");
+	Geometry size_geom(size);
+	Image temp_img(size_geom, "black");
 	Image img_iter = randomImg(width, height);
 	Image block;
 	BrightnessShiftRGB temp_brightness_shift;
 	int i = 0;
-	while (i<8)
+	while (i<20)
 	{
 		for (j_table = 0; j_table < height / 4; j_table++)
 		{
@@ -70,8 +70,7 @@ void Decoding(fstream& in)
 				temp_img.draw(DrawableCompositeImage(i_table * 4, j_table * 4, block));
 			}
 		}
-		//if (img_iter.compare(temp_img, Magick::RootMeanSquaredErrorMetric)<0.00001)
-		//	break;
+		if (img_iter.compare(temp_img, Magick::RootMeanSquaredErrorMetric)<0.001) break;
 		img_iter = temp_img;
 		i++;
 	}
