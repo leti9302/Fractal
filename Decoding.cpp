@@ -16,7 +16,6 @@ Image randomImg(int width, int height) {
 			image.pixelColor(i, j, ColorRGB(rand_color, rand_color, rand_color));
 		}
 	}
-	image.write("img.jpg");
 	return image;
 }
 
