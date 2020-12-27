@@ -6,7 +6,8 @@ void main(int argc, char** argv) {
 		InitializeMagick(*argv);
 		fstream compress_result;
 		Image image("lena512.bmp");
-		image.resize("16x16!"); // в тестовых целях
+		image.resize("32x32!"); // в тестовых целях
+		image.write("original.jpg");
 		compress_result.open("Compress Image.txt", fstream::out);
 		Coding(image, compress_result);
 		compress_result.close();
